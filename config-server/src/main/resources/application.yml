@@ -1,8 +1,16 @@
 spring:
   application:
     name: config-server
-
+  cloud:
+    config:
+      server:
+        git:
+          uri:
+          search-paths:
+          username:mahongbql
+          password: mhb19940803751X
 server:
   port: 7001
+
 
 
