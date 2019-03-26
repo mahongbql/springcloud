@@ -8,9 +8,9 @@ spring:
       server:
         git:
           uri: https://github.com/mahongbql/springcloud/
-          search-paths: /**
+          search-paths: config
           username: mahongbql
-          password: mhb19940803751X
+          password: *********
 
 eureka:
   client:

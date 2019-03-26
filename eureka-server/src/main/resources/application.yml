@@ -1,6 +1,6 @@
 spring:
   application:
-    name: microservice-discovery-eureka-ha
+    name: eureka-server
 ---
 spring:
   #指定profile = peer1
