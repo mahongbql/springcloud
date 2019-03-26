@@ -1,3 +1,5 @@
+server:
+  port: 5000
 spring:
   application:
     name: config-server
@@ -6,17 +8,16 @@ spring:
       server:
         git:
           uri: https://github.com/mahongbql/springcloud/
-          search-paths: config
+          search-paths: /**
           username: mahongbql
           password: mhb19940803751X
 
-server:
-  port: 7010
-
 eureka:
   client:
-    serviceUrl:
+    service-url:
       defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
-
+    enabled: true
+    healthcheck:
+      enabled: true
 
 
