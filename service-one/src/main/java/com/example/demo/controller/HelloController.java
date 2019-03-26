@@ -19,7 +19,7 @@ public class HelloController {
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello() {
-        log.info("service-one accept ------------------------------ ");
+        log.info("service-one accept config :" + this.config);
 
         return this.config;
     }
