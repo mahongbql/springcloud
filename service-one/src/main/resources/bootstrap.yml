@@ -9,6 +9,8 @@ spring:
       discovery:
         service-id: config-server
         enabled: true
+      username: nick
+      password: 123456
 
 eureka:
   client:
