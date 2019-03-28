@@ -10,7 +10,14 @@ spring:
           uri: https://github.com/mahongbql/springcloud/
           search-paths: config
           username: mahongbql
-          password: *********
+          password: *****
+        encrypt:
+          enabled: true
+
+security:
+  user:
+    password: 123456
+    name: nick
 
 eureka:
   client:
