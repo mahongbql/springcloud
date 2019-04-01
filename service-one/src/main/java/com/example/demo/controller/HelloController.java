@@ -17,10 +17,13 @@ public class HelloController {
     @Value("${config}")
     private String config;
 
+    @Value("${header}")
+    private String header;
+
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello() {
-        log.info("service-one accept config :" + this.config);
+        log.info("service-one accept config :" + this.config + this.header);
 
-        return this.config;
+        return this.config + " ------------ " + this.header;
     }
 }
