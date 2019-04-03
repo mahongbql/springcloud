@@ -1,0 +1,22 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+      config:
+        name: config-zuul-client
+        discovery:
+          service-id: config-server
+          enabled: true
+        username: nick
+        password: 123456
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
+    healthcheck:
+      enabled: true
