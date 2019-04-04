@@ -12,8 +12,8 @@ public class HelloController {
     @Autowired
     private HelloService helloService;
 
-    @RequestMapping(value = "/feign-consumer", method = RequestMethod.GET)
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello() {
-        return helloService.hello();
+        return helloService.hello() + " feign-consumer";
     }
 }

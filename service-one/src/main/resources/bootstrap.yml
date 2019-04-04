@@ -2,7 +2,7 @@ server:
   port: 8001
 spring:
   application:
-    name: helloclient
+    name: hello-service
   cloud:
     config:
       name: config-client

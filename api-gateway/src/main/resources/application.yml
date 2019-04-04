@@ -1,8 +1,7 @@
-#zuul:
-#  routes:
-#    server-one:
-#      path: /server-one/**
-#      serviceId: hello-service
-#    feign-consumer:
-#      path: /feign-consumer/**
-#      serviceId: feign-consumer
+management:
+  endpoints:
+    web:
+      exposure:
+        include: routes,refresh,health
+  security:
+    enabled: false
