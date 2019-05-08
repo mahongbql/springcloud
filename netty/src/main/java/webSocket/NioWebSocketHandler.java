@@ -34,9 +34,11 @@ public class NioWebSocketHandler extends SimpleChannelInboundHandler<Object> {
         //判断帧对象是FullHttpRequest还是WebSocketFrame
         if (msg instanceof FullHttpRequest){
             //以http请求形式接入，但是走的是websocket
+            logger.debug(" -------------------------------------- 以http请求形式接入，但是走的是websocket -------------------------------------- ");
             handleHttpRequest(ctx, (FullHttpRequest) msg);
         }else if (msg instanceof WebSocketFrame){
             //处理websocket客户端的消息
+            logger.debug(" -------------------------------------- 处理websocket客户端的消息 -------------------------------------- ");
             handlerWebSocketFrame(ctx, (WebSocketFrame) msg);
         }
     }
