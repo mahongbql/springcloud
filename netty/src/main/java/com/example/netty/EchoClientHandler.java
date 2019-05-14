@@ -20,9 +20,12 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("client channelActive..");
-        // 必须有flush
-        ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks!", CharsetUtil.UTF_8));
+        for (int i = 0; i < 100; i++) {
+            byte[] bytes = "你好，我的名字是1234567!".getBytes(Charset.forName("utf-8"));
+            ByteBuf buffer = ctx.alloc().buffer();
+            buffer.writeBytes(bytes);
+            ctx.channel().writeAndFlush(buffer);
+        }
     }
 
     @Override
@@ -39,8 +42,7 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
      */
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf) throws Exception {
-        System.out.println("client channelRead..");
         ByteBuf buf = byteBuf.readBytes(byteBuf.readableBytes());
-        System.out.println("Client received:" + ByteBufUtil.hexDump(buf) + "; The value is:" + buf.toString(Charset.forName("utf-8")));
+        System.out.println("客户端接收到数据 -> " + buf.toString(Charset.forName("utf-8")));
     }
 }

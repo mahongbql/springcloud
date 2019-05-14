@@ -29,7 +29,7 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter{
     public void channelRead(ChannelHandlerContext context, Object msg) {
         ByteBuf in = (ByteBuf) msg;
         // 打印消息
-        System.out.println("server received: " + in.toString(CharsetUtil.UTF_8));
+        System.out.println("服务端接收到数据 -> " + in.toString(CharsetUtil.UTF_8));
         // 将接收到的消息写给发送者, 而不冲刷出站消息
         context.write(in);
     }
