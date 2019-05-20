@@ -31,6 +31,7 @@ public class MyDecoder extends ByteToMessageDecoder {
             // 防止，客户端传来的数据过大
             // 因为，太大的数据，是不合理的
             if (byteBuf.readableBytes() > 2048) {
+                System.out.println("数据过大，跳过：" + byteBuf.readableBytes());
                 byteBuf.skipBytes(byteBuf.readableBytes());
             }
 
@@ -40,6 +41,9 @@ public class MyDecoder extends ByteToMessageDecoder {
             while (true) {
                 // 获取包头开始的index
                 beginReader = byteBuf.readerIndex();
+
+                System.out.println("开始的 index 是：" + beginReader);
+
                 // 标记包头开始的index
                 byteBuf.markReaderIndex();
                 // 读到了协议的开始标志，结束while循环
@@ -49,7 +53,9 @@ public class MyDecoder extends ByteToMessageDecoder {
 
                 // 未读到包头，略过一个字节
                 // 每次略过，一个字节，去读取，包头信息的开始标记
+                // reset到mark的地方，表示可读的区域重置到了 reset 的地方
                 byteBuf.resetReaderIndex();
+
                 byteBuf.readByte();
 
                 // 当略过，一个字节之后，

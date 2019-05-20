@@ -18,7 +18,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     // 客户端与服务端，连接成功的售后
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             byte[] content = "I am client ...".getBytes(Charset.forName("utf-8"));
             int contentLength = content.length;
             MyProtocol protocol = new MyProtocol(contentLength, content);
