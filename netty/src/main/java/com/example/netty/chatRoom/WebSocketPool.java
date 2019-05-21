@@ -112,7 +112,9 @@ public class WebSocketPool {
         synchronized (keySet) {
             for (WebSocket conn : keySet) {
                 String user = userconnections.get(conn);
-                if (user != null) { conn.send(message);}
+                if (user != null) {
+                    conn.send(message);
+                }
             }
         }
     }
