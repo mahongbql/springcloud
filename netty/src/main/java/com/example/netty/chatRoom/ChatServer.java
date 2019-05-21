@@ -173,23 +173,4 @@ public class ChatServer extends WebSocketServer {
         }
     }
 
-    // 测试
-//    public static void main(String[] args) throws InterruptedException,
-//            IOException {
-//        int port = 8887;
-//
-//        ChatServer server = new ChatServer(port);
-//        server.start();
-//
-//        System.out.println("房间已开启，等待客户端接入，端口号: " + server.getPort());
-//
-//        BufferedReader webSocketIn = new BufferedReader(new InputStreamReader(
-//                System.in));
-//
-//        while (true) {
-//            String stringIn = webSocketIn.readLine();
-//            // 发送给所有的聊天者
-//            server.sendToAll(stringIn);
-//        }
-//    }
 }
