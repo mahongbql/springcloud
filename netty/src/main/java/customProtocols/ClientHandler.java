@@ -1,5 +1,7 @@
 package customProtocols;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
@@ -18,12 +20,16 @@ public class ClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     // 客户端与服务端，连接成功的售后
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        for (int i = 0; i < 10; i++) {
-            byte[] content = "I am client ...".getBytes(Charset.forName("utf-8"));
-            int contentLength = content.length;
-            MyProtocol protocol = new MyProtocol(contentLength, content);
-            ctx.writeAndFlush(protocol);
-        }
+        System.out.println("客户端连接成功");
+        JSONObject json = new JSONObject();
+        json.put("userName", "李四");
+        json.put("userId", "2");
+        json.put("message", "hello，帅哥");
+
+        byte[] content = json.toString().getBytes(Charset.forName("utf-8"));
+        int contentLength = content.length;
+        MyProtocol protocol = new MyProtocol(contentLength, content);
+        ctx.writeAndFlush(protocol);
     }
 
     // 只是读数据，没有写数据的话
@@ -34,7 +40,15 @@ public class ClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
         try {
             // 用于获取客户端发来的数据信息
             MyProtocol myProtocol = (MyProtocol) msg;
-            System.out.println("Client 接受的客户端的信息 :" + new String(myProtocol.getContent(), "utf-8"));
+            String content = new String(myProtocol.getContent(), "utf-8");
+            JSONObject json = JSONObject.parseObject(content);
+            String userName = json.getString("userName");
+            if (null != userName) {
+                System.out.println(json.getString("userName") + " :" + json.getString("message"));
+            } else {
+                System.out.println(json.getString("message"));
+            }
+
 
         } finally {
             ReferenceCountUtil.release(msg);

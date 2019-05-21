@@ -42,8 +42,6 @@ public class MyDecoder extends ByteToMessageDecoder {
                 // 获取包头开始的index
                 beginReader = byteBuf.readerIndex();
 
-                System.out.println("开始的 index 是：" + beginReader);
-
                 // 标记包头开始的index
                 byteBuf.markReaderIndex();
                 // 读到了协议的开始标志，结束while循环
