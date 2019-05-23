@@ -17,6 +17,8 @@ import java.util.Set;
  * 与不同的客户端进行通讯的思路为：
  * Step1：在连接成功的时候，向服务器发送自己的用户名，服务器做用户标记；
  * Step2: 发送消息，格式为“XX@XXX”，@前面表示将要发送的对象，“all”表示群发，@后面表示发送的消息。
+ *
+ * tomcat的方式需要tomcat 7.x，JEE7的支持，使用这种方式无需别的任何配置，只需服务端一个处理类
  */
 public class ChatServer extends WebSocketServer {
 
